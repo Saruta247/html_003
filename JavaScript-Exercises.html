@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Exercises</title>
+</head>
+<body>
+    <script>
+        const vat = 0.07; // Value Added Tax
+
+        // Function to calculate the total order amount including VAT
+        function orderCalculator(price, quantity) {
+            const subtotal = price * quantity;
+            const vatAmount = subtotal * vat; // Calculate VAT amount
+            return subtotal + vatAmount; // Add VAT to the subtotal
+        }
+
+        // Function to calculate the delivery fee based on order total and membership status
+        // memberStatus is a boolean indicating if the customer is a premium member
+        function deliveryCalculator(totalPrice, memberStatus) {
+            let deliveryFee = 0;
+
+            if (totalPrice > 10000) {
+                deliveryFee = 0; // Free delivery for orders over $10,000
+            } else if (memberStatus) {
+                deliveryFee = 30; // Reduced delivery fee for premium members
+            } else {
+                deliveryFee = 50; // Standard delivery fee
+            }
+
+            return deliveryFee;
+        }
+
+        let cartPrices = [850, 2000, 1500]; // Array of product prices
+        // Calculate cart total (subtotal without VAT)
+        let cartTotal = cartPrices.reduce((sum, p) => sum + p, 0);
+        document.write("<h2>Cart Price</h2>");
+        document.write("<p>Cart Total : $" + cartTotal.toFixed(2) + "</p>");
+
+        function discountCalculator(amount, percentage) {
+            let discount = amount * (percentage / 100); // Calculate discount amount
+            let discountedTotal = amount - discount; // Subtract discount from total
+
+            return discountedTotal;
+        }
+
+        // Calculate discounted total for 10% discount
+        let discountResult = discountCalculator(cartTotal, 10);
+
+        document.write("<h2>Discount</h2>");
+        document.write("<p>Original Amount: $" + cartTotal.toFixed(2) + "</p>");
+        document.write("<p>Discount Percentage : 10%</p>");
+        document.write("<p>Final Price : $" + discountResult.toFixed(2) + "</p>");
+
+        //product #1
+        let product1 = {
+            name: "ตู้เสื้อผ้า",
+            price: 850,
+            quantity: 2
+        };
+
+        //product #2
+        let product2 = {
+            name: "ไมโครเวฟ",
+            price: 2000,
+            quantity: 1
+        };
+
+        //product #3
+        let product3 = {
+            name: "เครื่องซักผ้า",
+            price: 1500,
+            quantity: 1
+        };
+
+        const products = [product1, product2, product3]; // Array of products
+
+        // display order details for product #1
+        const calc0 = orderCalculator(product1.price, product1.quantity);
+        const product1Subtotal = product1.price * product1.quantity;
+        document.write("<h2>Order Details for Product 1</h2>");
+        document.write("<p>Name: " + product1.name + "</p>");
+        document.write("<p>Price: $" + product1.price + "</p>");
+        document.write("<p>Quantity: " + product1.quantity + "</p>");
+        document.write("<p>Subtotal: $" + product1Subtotal.toFixed(2) + "</p>");
+        document.write("<p>Total + Vat: $" + calc0.toFixed(2) + "</p>");
+
+        // display order details for product #2
+        const calc1 = orderCalculator(product2.price, product2.quantity);
+        const product2Subtotal = product2.price * product2.quantity;
+        document.write("<h2>Order Details for Product 2</h2>");
+        document.write("<p>Name: " + product2.name + "</p>");
+        document.write("<p>Price: $" + product2.price + "</p>");
+        document.write("<p>Quantity: " + product2.quantity + "</p>");
+        document.write("<p>Subtotal: $" + product2Subtotal.toFixed(2) + "</p>");
+        document.write("<p>Total + Vat: $" + calc1.toFixed(2) + "</p>");
+
+        // display order details for product #3
+        const calc2 = orderCalculator(product3.price, product3.quantity);
+        const product3Subtotal = product3.price * product3.quantity;
+        document.write("<h2>Order Details for Product 3</h2>");
+        document.write("<p>Name: " + product3.name + "</p>");
+        document.write("<p>Price: $" + product3.price + "</p>");
+        document.write("<p>Quantity: " + product3.quantity + "</p>");
+        document.write("<p>Subtotal: $" + product3Subtotal.toFixed(2) + "</p>");
+        document.write("<p>Total + Vat: $" + calc2.toFixed(2) + "</p>");
+
+        // display total delivery fee (sum totals for all products)
+        let totalPrice = product1.quantity * product1.price + product2.quantity * product2.price + product3.quantity * product3.price;
+        let memberStatus = true; // Assume the customer is a premium member
+        document.write("<h2>Delivery Fee</h2>");
+        document.write("<p>Total Price: $" + totalPrice.toFixed(2) + "</p>");
+        document.write("<p>Delivery Fee: $" + deliveryCalculator(totalPrice, memberStatus).toFixed(2) + "</p>");
+    </script>
+</body>
+</html>
